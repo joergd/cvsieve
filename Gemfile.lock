@@ -44,7 +44,6 @@ GEM
     byebug (4.0.5)
       columnize (= 0.9.0)
     columnize (0.9.0)
-    commonjs (0.2.7)
     debug_inspector (0.0.2)
     devise (3.4.1)
       bcrypt (~> 3.0)
@@ -63,13 +62,6 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.2)
-    less (2.6.0)
-      commonjs (~> 0.2.7)
-    less-rails (2.7.0)
-      actionpack (>= 4.0)
-      less (~> 2.6.0)
-      sprockets (> 2, < 4)
-      tilt
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -127,7 +119,6 @@ GEM
       sprockets (>= 2.8, < 4.0)
     thor (0.19.1)
     thread_safe (0.3.5)
-    tilt (1.4.1)
     twitter-bootstrap-rails (3.2.0)
       actionpack (~> 4.1)
       execjs (~> 2.2)
@@ -153,7 +144,6 @@ DEPENDENCIES
   byebug
   devise
   jquery-rails
-  less-rails
   pg
   puma
   rails (= 4.2.1)
