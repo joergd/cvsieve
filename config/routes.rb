@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
+  devise_for :admins, :skip => [:registrations]
+  as :admin do
+    get 'admins/edit' => 'devise/registrations#edit', :as => 'edit_admin_registration'
+    put 'admins' => 'devise/registrations#update', :as => 'admin_registration'
+  end
+
+  devise_for :businesses, path: "auth", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'new' }
+
+  get 'welcome/index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
+  root 'welcome#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
