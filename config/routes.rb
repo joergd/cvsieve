@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'dashboard' => "dashboard#index", :as =>  "root"
+  end
+
   devise_for :admins, :skip => [:registrations]
   as :admin do
     get 'admins/edit' => 'devise/registrations#edit', :as => 'edit_admin_registration'
@@ -14,6 +18,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
