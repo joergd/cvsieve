@@ -25,13 +25,13 @@ module Cvsieve
 
     config.autoload_paths << Rails.root.join('lib')
 
-    config.to_prepare do
-      Devise::SessionsController.layout "devise"
-      Devise::RegistrationsController.layout "devise"
-      Devise::ConfirmationsController.layout "devise"
-      Devise::UnlocksController.layout "devise"
-      Devise::PasswordsController.layout "devise"
-    end
+    # config.to_prepare do
+    #   Devise::SessionsController.layout "devise"
+    #   # Devise::RegistrationsController.layout "devise"
+    #   Devise::ConfirmationsController.layout "devise"
+    #   Devise::UnlocksController.layout "devise"
+    #   Devise::PasswordsController.layout "devise"
+    # end
 
     config.generators do |g|
       g.assets  false

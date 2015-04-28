@@ -4,12 +4,17 @@ Rails.application.routes.draw do
   end
 
   devise_for :admins, :skip => [:registrations]
-  as :admin do
+  devise_scope :admin do
     get 'admins/edit' => 'devise/registrations#edit', :as => 'edit_admin_registration'
     put 'admins' => 'devise/registrations#update', :as => 'admin_registration'
   end
 
-  devise_for :businesses, path: "auth", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'new' }
+  devise_for :businesses, path: "profile", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'new' }
+
+  devise_scope :business do
+    get "profile", to: "devise/registrations#edit", :as => "business_root"
+  end
+
 
   get 'welcome/index'
 
