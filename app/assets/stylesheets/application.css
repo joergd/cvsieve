@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+.form-control[readonly].secret-id {
+  background-color: white;
+}

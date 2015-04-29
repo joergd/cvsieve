@@ -5,7 +5,7 @@ class Admin::BusinessesController < ApplicationController
   before_filter :get_business, except: [:index]
 
   def index
-    @businesses = Business.all.order(name: :asc)
+    @businesses = Business.all.order_by_name
   end
 
   def suspend

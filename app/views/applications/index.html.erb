@@ -1,0 +1,42 @@
+  <div class="col-sm-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4>Applications</h4>
+      </div>
+      <div class="panel-body">
+        <% if @applications.any? %>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <td>Date</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Tel</td>
+                <td>Answer</td>
+                <td>Video</td>
+              </tr>
+            </thead>
+            <tbody>
+              <% @applications.each do |application| %>
+                <tr>
+                  <td><%= application.created_at.to_s(:db) %></td>
+                  <td><%= application.name %></td>
+                  <td><%= application.email %></td>
+                  <td><%= application.tel %></td>
+                  <td><%= simple_format(application.answer) %></td>
+                  <td></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+
+        <% else %>
+          <p>You don't have any applications yet.</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <%= render partial: "link" %>
+  </div>

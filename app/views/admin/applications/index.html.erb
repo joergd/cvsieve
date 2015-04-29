@@ -1,0 +1,28 @@
+<h1>Applications</h1>
+
+<% if @applications.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Business</td>
+        <td>Date</td>
+        <td>Answer</td>
+        <td>Video</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @applications.each do |application| %>
+        <tr>
+          <td><%= application.job.business.name %></td>
+          <td><%= application.created_at.to_s(:db) %></td>
+          <td><%= simple_format(application.answer) %></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+<% else %>
+  <p>There are no applications yet.</p>
+<% end %>

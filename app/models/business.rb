@@ -41,6 +41,7 @@ class Business < ActiveRecord::Base
   ACTIVE_STATUS = 'active'
 
   scope :published, -> { where(status: ACTIVE_STATUSES) }
+  scope :order_by_name, -> { order(name: :asc) }
 
   def suspended?
     status == SUSPENDED_STATUS

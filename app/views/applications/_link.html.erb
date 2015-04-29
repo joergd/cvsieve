@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Link for applicants</h4>
+  </div>
+  <div class="panel-body">
+    <p>This is the link you need to <strong>email</strong> to your applicants. With this link they will be able to apply for a job.</p>
+    <textarea readonly class="form-control secret-id" rows="3"><%= apply_url(current_business.job) %></textarea>
+  </div>
+</div>
+
+<%= content_for :javascript do %>
+  <script>
+    $(document).ready(function() {
+      $('.secret-id').focus(function(e) {
+        e.preventDefault();
+        setTimeout(function() { $(e.target).select(); }, 1);
+      })
+    });
+  </script>
+<% end %>

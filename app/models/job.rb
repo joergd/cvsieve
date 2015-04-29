@@ -17,6 +17,10 @@ class Job < ActiveRecord::Base
 
   after_create :generate_secret_id
 
+  def to_param
+    self.secret_id
+  end
+
 private
 
   def generate_secret_id

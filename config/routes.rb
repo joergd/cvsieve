@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+
+  devise_for :businesses, path: "profile", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'new' }, controllers: { registrations: 'profile' }
+
+  devise_scope :business do
+    get "profile", to: "profile#edit"
+  end
+
+  resources :applications, only: [:index, :destroy, :show]
+  get "applications", to: "applications#index", as: "business_root"
+
+  get "apply/:id", to: "jobs#show", as: "apply"
+
   namespace :admin do
     resources :businesses, only: [:index, :destroy] do
       member do
@@ -15,15 +27,6 @@ Rails.application.routes.draw do
     get 'admins/edit' => 'devise/registrations#edit', :as => 'edit_admin_registration'
     put 'admins' => 'devise/registrations#update', :as => 'admin_registration'
   end
-
-  devise_for :businesses, path: "profile", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'new' }, controllers: { registrations: 'profile' }
-
-  devise_scope :business do
-    get "profile", to: "devise/registrations#edit", :as => "business_root"
-  end
-
-
-  get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
