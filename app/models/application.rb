@@ -23,6 +23,7 @@ class Application < ActiveRecord::Base
   validates :name, presence: true
   validates :tel, presence: true, format: { with: /[^A-Za-z]/ }
   validates :answer, presence: true
+  validates :video, presence: true
 
   scope :order_by_business_name, -> { joins("INNER JOIN jobs ON jobs.id = applications.job_id INNER JOIN businesses ON businesses.id = jobs.business_id").order("businesses.name ASC") }
 

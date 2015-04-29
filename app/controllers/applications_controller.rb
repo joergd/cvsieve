@@ -34,6 +34,6 @@ private
   end
 
   def application_params
-    params.require(:application).permit(:name, :email, :tel, :answer)
+    params.require(:application).permit(:name, :email, :tel, :answer, :video)
   end
 end
