@@ -6,10 +6,12 @@ Rails.application.routes.draw do
     get "profile", to: "profile#edit"
   end
 
-  resources :applications, only: [:index, :destroy, :show]
+  resources :applications, only: [:index, :destroy, :show, :new, :create]
   get "applications", to: "applications#index", as: "business_root"
 
-  get "apply/:id", to: "jobs#show", as: "apply"
+  get "apply/:id", to: "applications#new", as: "apply"
+  post "apply/:id", to: "applications#create", as: "send_application"
+  get "apply/:id/thankyou", to: "applications#thankyou", as: "thankyou"
 
   namespace :admin do
     resources :businesses, only: [:index, :destroy] do

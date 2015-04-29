@@ -1,0 +1,40 @@
+<div class="col-sm-9">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4>Apply to <%= @job.business.name %></h4>
+    </div>
+    <div class="panel-body">
+      <%= form_for @job.build(:application), url: send_application_path(id: @job.to_param) do |f| %>
+        <div class="form-group">
+          <%= f.label :name, "Your name" %>
+          <%= f.text_field :name, autofocus: true, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :tel %>
+          <%= f.text_field :tel, class: "form-control" %>
+        </div>
+        <%= f.submit "Send application", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="col-sm-3">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4>Contact details</h4>
+    </div>
+    <div class="panel-body">
+      <address>
+        <strong><%= @job.business.name %></strong><br>
+        <abbr title="Contact">Contact:</abbr> <%= @job.business.contact %><br>
+        <abbr title="Phone">Tel:</abbr> <%= @job.business.tel %><br/>
+        <a href="mailto:<%= @job.business.email%>"><%= @job.business.email %></a>
+      </address>
+    </div>
+  </div>
+</div>
+
