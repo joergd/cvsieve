@@ -19,11 +19,11 @@
             <tbody>
               <% @applications.each do |application| %>
                 <tr>
-                  <td><%= application.created_at.to_s(:db) %></td>
+                  <td><%= time_ago_in_words(application.created_at) %> ago</td>
                   <td><%= application.name %></td>
-                  <td><%= application.email %></td>
+                  <td><%= mail_to application.email %></td>
                   <td><%= application.tel %></td>
-                  <td><%= simple_format(application.answer) %></td>
+                  <td><%= link_to truncate(application.answer), application_path(application) %></td>
                   <td></td>
                 </tr>
               <% end %>

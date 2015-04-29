@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Application from <%= @application.name %></h4>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-3">
+        <address>
+          <strong><%= @application.name %></strong><br>
+          <abbr title="Phone">Tel:</abbr> <%= @application.tel %><br/>
+          <a href="mailto:<%= @application.email%>"><%= @application.email %></a>
+        </address>
+      </div>
+      <div class="col-sm-9">
+        <%= simple_format(@application.answer) %>
+
+      </div>
+    </div>
+  </div>
+</div>
+<%= link_to "Back to applications", applications_path %>

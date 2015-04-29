@@ -1,21 +1,37 @@
 <div class="col-sm-9">
-  <div class="panel panel-default">
+  <div class="panel <% if @application.errors.any? %>panel-danger<% else %>panel-default<% end %>">
     <div class="panel-heading">
       <h4>Apply to <%= @job.business.name %></h4>
     </div>
     <div class="panel-body">
-      <%= form_for @job.build(:application), url: send_application_path(id: @job.to_param) do |f| %>
+      <%= form_for @application, url: send_application_path(id: @job.to_param) do |f| %>
         <div class="form-group">
           <%= f.label :name, "Your name" %>
           <%= f.text_field :name, autofocus: true, class: "form-control" %>
+          <% if @application.errors[:name] %>
+            <span class="help-block"><span class="text-danger"><%= @application.errors[:name].to_sentence %></span></span>
+          <% end %>
         </div>
         <div class="form-group">
           <%= f.label :email %>
           <%= f.email_field :email, class: "form-control" %>
+          <% if @application.errors[:email] %>
+            <span class="help-block"><span class="text-danger"><%= @application.errors[:email].to_sentence %></span></span>
+          <% end %>
         </div>
         <div class="form-group">
           <%= f.label :tel %>
           <%= f.text_field :tel, class: "form-control" %>
+          <% if @application.errors[:tel] %>
+            <span class="help-block"><span class="text-danger"><%= @application.errors[:tel].to_sentence %></span></span>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <%= f.label :answer %>
+          <%= f.text_area :answer, class: "form-control", rows: 5 %>
+          <% if @application.errors[:answer] %>
+            <span class="help-block"><span class="text-danger"><%= @application.errors[:answer].to_sentence %></span></span>
+          <% end %>
         </div>
         <%= f.submit "Send application", class: "btn btn-primary" %>
       <% end %>

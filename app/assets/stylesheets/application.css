@@ -17,3 +17,7 @@
 .form-control[readonly].secret-id {
   background-color: white;
 }
+
+.field_with_errors input, .field_with_errors input:focus {
+  border-color: #d9534f;
+}
