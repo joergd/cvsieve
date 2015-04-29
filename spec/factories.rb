@@ -15,4 +15,9 @@ FactoryGirl.define do
     password "testtest"
     password_confirmation "testtest"
   end
+
+  factory :job do
+    business
+  end
+
 end
