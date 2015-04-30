@@ -24,6 +24,8 @@ class Application < ActiveRecord::Base
   validates :answer, presence: true
   validates :video, presence: true
 
+  delegate :business, to: :job
+
   scope :order_by_business_name, -> { joins("INNER JOIN jobs ON jobs.id = applications.job_id INNER JOIN businesses ON businesses.id = jobs.business_id").order("businesses.name ASC") }
 
 end

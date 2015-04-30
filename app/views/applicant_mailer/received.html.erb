@@ -1,0 +1,11 @@
+<h1>Application Received</h1>
+<h4><%= @application.name %></h4>
+<p><%= @application.email %></p>
+<hr />
+<p>Why should we hire you?</p>
+<%= simple_format(@application.answer) %>
+<hr />
+<p>
+  Please visit the application online to view the video.<br/>
+  <%= link_to application_url(@application), application_url(@application) %>
+</p>
