@@ -36,6 +36,7 @@ gem "twitter-bootstrap-rails"
 gem 'rails_12factor' # for heroku
 gem 'puma'
 gem 'sucker_punch'
+gem 'devise-async'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
