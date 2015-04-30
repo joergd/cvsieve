@@ -24,4 +24,19 @@ RSpec.describe ProfileController, type: :controller do
     end
   end
 
+  describe "POST #create" do
+    it "should be a redirect" do
+      post :create, business: { name: "KFC", email: "kfc@spam.com", contact: "Jon", tel: "122434", password: "password", password_confirmation: "password"}
+      expect(response).to have_http_status(:redirect)
+    end
+    it "should create a business" do
+      post :create, business: { name: "KFC", email: "kfc@spam.com", contact: "Jon", tel: "122434", password: "password", password_confirmation: "password"}
+      @business = Business.last
+      expect(@business.name).to eq("KFC")
+      expect(@business.email).to eq("kfc@spam.com")
+      expect(@business.contact).to eq("Jon")
+      expect(@business.tel).to eq("122434")
+    end
+  end
+
 end
