@@ -73,7 +73,7 @@
         <% end %>
       </div>
     </div>
-    <%= f.submit "Send application", class: "btn btn-primary btn-lg" %>
+    <%= f.submit "Send application", class: "btn btn-primary btn-lg send-application", disabled: true %>
   </div>
 <% end %>
 
@@ -85,22 +85,29 @@
       var myCamera;
       var published = <%= !@application.video.blank? %>;
 
+      if(published) {
+        $('.send-application').removeAttr('disabled','disabled');
+      }
+
       CameraTag.observe("introduction", "initialized", function(){
         myCamera = CameraTag.cameras["introduction"];
         $('#application_video').val(myCamera.getVideo().uuid);
-        console.log($('#application_video').val());
+      });
+      CameraTag.observe("introduction", "bufferingUp", function(){
+        $('.send-application').val("Please wait ...");
       });
       CameraTag.observe("introduction", "published", function(){
         published = true;
-        console.log(published);
+        $('.send-application').removeAttr('disabled','disabled');
+        $('.send-application').val("Send application");
       });
+
       $('#new_application').submit(function(e) {
-        console.log(published);
         if(myCamera) {
           if(!published) {
             e.preventDefault();
             $('.record-video').removeClass('hidden');
-            alertVideoNotRecorded();
+            recordVideo.alertNotRecorded($('.panel-video'));
           }
         }
       });
