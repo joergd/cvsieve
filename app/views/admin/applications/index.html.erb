@@ -1,28 +1,37 @@
-<h1>Applications</h1>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Applications</h4>
+  </div>
+  <div class="panel-body">
+    <% if @applications.any? %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>Business</td>
+            <td>Date</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Answer</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @applications.each do |application| %>
+            <tr>
+              <td><%= application.job.business.name %></td>
+              <td><%= time_ago_in_words(application.created_at) %> ago</td>
+              <td><%= application.name %></td>
+              <td><%= application.email %></td>
+              <td><%= link_to truncate(application.answer), admin_application_path(application) %></td>
+              <td></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-<% if @applications.any? %>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <td>Business</td>
-        <td>Date</td>
-        <td>Answer</td>
-        <td>Video</td>
-      </tr>
-    </thead>
-    <tbody>
-      <% @applications.each do |application| %>
-        <tr>
-          <td><%= application.job.business.name %></td>
-          <td><%= application.created_at.to_s(:db) %></td>
-          <td><%= simple_format(application.answer) %></td>
-          <td></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
 
+    <% else %>
+      <p>There are no applications yet.</p>
+    <% end %>
+  </div>
+</div>
 
-<% else %>
-  <p>There are no applications yet.</p>
-<% end %>

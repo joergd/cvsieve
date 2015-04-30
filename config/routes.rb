@@ -14,14 +14,15 @@ Rails.application.routes.draw do
   get "apply/:id/thankyou", to: "applications#thankyou", as: "thankyou"
 
   namespace :admin do
+    get "/", to: "businesses#index", as: "root"
     resources :businesses, only: [:index, :destroy] do
       member do
         put 'suspend'
         put 'activate'
       end
     end
-    resources :applications, only: [:index]
-    get 'dashboard' => "businesses#index", :as =>  "root"
+    resources :applications, only: [:index, :show]
+    # get 'dashboard' => "businesses#index", :as =>  "root"
   end
 
   devise_for :admins, :skip => [:registrations]

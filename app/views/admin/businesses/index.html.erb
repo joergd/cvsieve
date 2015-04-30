@@ -1,54 +1,60 @@
-<h1>Businesses</h1>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Businesses</h4>
+  </div>
+  <div class="panel-body">
+    <% if @businesses.any? %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Application</td>
+            <td>Status</td>
+            <td>Action</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @businesses.each do |business| %>
+            <tr>
+              <td><%= business.name %></td>
+              <td><%= business.applications.count %></td>
+              <td><%= business.status %></td>
+              <td>
+                <a href="#" class="delete-link" data-toggle="popover" data-placement="left" data-title="Delete business?">delete</a>&nbsp;|&nbsp;
+                <% if business.active? %>
+                  <%= link_to "suspend", suspend_admin_business_path(business), method: :put %>
+                <% end %>
+                <% if business.suspended? %>
+                  <%= link_to "activate", activate_admin_business_path(business), method: :put %>
+                <% end %>
+                <div class="hidden delete-button">
+                  <p>Deleting a business is forever. There is no undo.</p>
+                  <%= link_to "delete", admin_business_path(business), class: "btn btn-danger", method: :delete %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-<% if @businesses.any? %>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <td>Name</td>
-        <td>Application</td>
-        <td>Status</td>
-        <td>Action</td>
-      </tr>
-    </thead>
-    <tbody>
-      <% @businesses.each do |business| %>
-        <tr>
-          <td><%= business.name %></td>
-          <td><%= business.applications.count %></td>
-          <td><%= business.status %></td>
-          <td>
-            <a href="#" class="delete-link" data-toggle="popover" data-placement="left" data-title="Delete business?">delete</a>&nbsp;|&nbsp;
-            <% if business.active? %>
-              <%= link_to "suspend", suspend_admin_business_path(business), method: :put %>
-            <% end %>
-            <% if business.suspended? %>
-              <%= link_to "activate", activate_admin_business_path(business), method: :put %>
-            <% end %>
-            <div class="hidden delete-button">
-              <p>Deleting a business is forever. There is no undo.</p>
-              <%= link_to "delete", admin_business_path(business), class: "btn btn-danger", method: :delete %>
-            </div>
-          </td>
-        </tr>
+      <%= content_for :javascript do %>
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $('.delete-link').popover({
+              html : true,
+              content: function() {
+                console.log(this);
+                return $(this).siblings('.delete-button').html();
+              }
+            });
+          });
+
+        </script>
       <% end %>
-    </tbody>
-  </table>
 
-  <%= content_for :javascript do %>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $('.delete-link').popover({
-          html : true,
-          content: function() {
-            console.log(this);
-            return $(this).siblings('.delete-button').html();
-          }
-        });
-      });
+    <% else %>
+      <p>There are no businesses yet.</p>
+    <% end %>
+  </div>
+</div>
 
-    </script>
-  <% end %>
-
-<% else %>
-  <p>There are no businesses yet.</p>
-<% end %>

@@ -16,7 +16,6 @@
 class Application < ActiveRecord::Base
 
   belongs_to :job
-  # belongs_to :business, through: :job
 
   validates :job_id, presence: true
   validates :email, presence: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }

@@ -19,5 +19,14 @@ RSpec.describe Admin::ApplicationsController, type: :controller do
         expect(response).to have_http_status(:success)
       end
     end
+    describe "GET #show" do
+      before :each do
+        @application = create(:application)
+      end
+      it "returns http success" do
+        get :show, id: @application.to_param
+        expect(response).to have_http_status(:success)
+      end
+    end
   end
 end
