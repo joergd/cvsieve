@@ -1,33 +1,34 @@
-  <div class="col-sm-9">
+  <div class="col-lg-9">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4>Applications</h4>
       </div>
       <div class="panel-body">
         <% if @applications.any? %>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <td>Date</td>
-                <td>Name</td>
-                <td>Email</td>
-                <td>Tel</td>
-                <td>Answer</td>
-              </tr>
-            </thead>
-            <tbody>
-              <% @applications.each do |application| %>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
                 <tr>
-                  <td><%= time_ago_in_words(application.created_at) %> ago</td>
-                  <td><%= application.name %></td>
-                  <td><%= mail_to application.email %></td>
-                  <td><%= application.tel %></td>
-                  <td><%= link_to truncate(application.answer), application_path(application) %></td>
+                  <td>Date</td>
+                  <td>Name</td>
+                  <td>Email</td>
+                  <td>Tel</td>
+                  <td>Answer</td>
                 </tr>
-              <% end %>
-            </tbody>
-          </table>
-
+              </thead>
+              <tbody>
+                <% @applications.each do |application| %>
+                  <tr>
+                    <td><%= time_ago_in_words(application.created_at) %> ago</td>
+                    <td><%= application.name %></td>
+                    <td><%= mail_to application.email %></td>
+                    <td><%= application.tel %></td>
+                    <td><%= link_to truncate(application.answer), application_path(application) %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
 
         <% else %>
           <p>You don't have any applications yet.</p>
