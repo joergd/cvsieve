@@ -18,7 +18,7 @@
           <tbody>
             <% @applications.each do |application| %>
               <tr>
-                <td><%= application.job.business.name %></td>
+                <td><%= application.business.name %></td>
                 <td><%= time_ago_in_words(application.created_at) %> ago</td>
                 <td><%= application.name %></td>
                 <td><%= application.email %></td>

@@ -66,7 +66,7 @@ RSpec.describe ApplicationsController, type: :controller do
     end
     describe "a logged in business" do
       before :each do
-        sign_in :business, @application.job.business
+        sign_in :business, @application.business
       end
       it "should be a success" do
         get :show, id: @application.to_param
