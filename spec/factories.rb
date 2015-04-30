@@ -7,6 +7,10 @@ FactoryGirl.define do
     "name#{n}"
   end
 
+  sequence :video do |n|
+    "video#{n}"
+  end
+
   factory :business do
     name
     email
@@ -30,6 +34,7 @@ FactoryGirl.define do
     email
     tel "02144242345"
     answer "this is my answer"
+    video
   end
 
 end

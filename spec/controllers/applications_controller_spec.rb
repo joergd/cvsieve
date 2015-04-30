@@ -43,12 +43,12 @@ RSpec.describe ApplicationsController, type: :controller do
     describe "sending" do
       describe "for invalid applications" do
         it "should display new template" do
-          post :create, id: @job.to_param, application: { name: "Jonny", tel: "", email: "", answer: "haha" }
+          post :create, id: @job.to_param, application: { name: "Jonny", tel: "1332234", email: "jonny@spam.com", answer: "haha", video: "" }
           expect(response).to render_template(:new)
         end
       end
       it "should be a redirect to thankyou" do
-        post :create, id: @job.to_param, application: { name: "Jonny", tel: "1332234", email: "jonny@spam.com", answer: "haha" }
+        post :create, id: @job.to_param, application: { name: "Jonny", tel: "1332234", email: "jonny@spam.com", answer: "haha", video: "123" }
         expect(response).to redirect_to(thankyou_path(@job))
       end
     end
