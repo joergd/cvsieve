@@ -59,8 +59,6 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    devise-async (0.9.0)
-      devise (~> 3.2)
     devise-bootstrap-views (0.0.4)
     diff-lcs (1.2.5)
     erubis (2.7.0)
@@ -189,7 +187,6 @@ DEPENDENCIES
   byebug
   database_cleaner
   devise
-  devise-async
   devise-bootstrap-views
   factory_girl
   jquery-rails
