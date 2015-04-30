@@ -1,3 +1,5 @@
+<script src='//cameratag.com/api/v5/js/cameratag.js' type='text/javascript'></script>
+
 <h1>Application Received</h1>
 <h4><%= @application.name %></h4>
 <p><%= @application.email %></p>
@@ -5,6 +7,8 @@
 <p>Why should we hire you?</p>
 <%= simple_format(@application.answer) %>
 <hr />
+<p><video data-uuid='<%= @application.video %>'></video></p>
+
 <p>
   Please visit the application online to view the video.<br/>
   <%= link_to application_url(@application), application_url(@application) %>
