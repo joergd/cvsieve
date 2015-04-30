@@ -16,8 +16,8 @@ class ApplicationsController < ApplicationController
 
   def create
     @application = @job.applications.build(application_params)
-
     if @application.save
+      ApplicantsEmailReceivedJob.new.async.perform(@application.to_param)
       redirect_to thankyou_path(@job)
     else
       render :new

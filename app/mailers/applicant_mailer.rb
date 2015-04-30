@@ -9,4 +9,5 @@ class ApplicantMailer < ApplicationMailer
     @application = Application.find_by_secret_id!(application_secret_id)
     mail to: @application.business.email, subject: "[Applicant Labs] You have received an application from #{@application.name}"
   end
+
 end

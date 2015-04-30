@@ -35,10 +35,12 @@ gem "twitter-bootstrap-rails"
 
 gem 'rails_12factor' # for heroku
 gem 'puma'
+gem 'sucker_punch'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'pry-byebug'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

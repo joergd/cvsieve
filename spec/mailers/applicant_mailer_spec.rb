@@ -6,7 +6,7 @@ RSpec.describe ApplicantMailer, type: :mailer do
       @application = create(:application, name: "Johnny")
     end
 
-    let(:mail) { ApplicantMailer.received(@application.id) }
+    let(:mail) { ApplicantMailer.received(@application.to_param) }
 
     it "renders the headers" do
       expect(mail.subject).to eq("[Applicant Labs] You have received an application from Johnny")
