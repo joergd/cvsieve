@@ -11,6 +11,7 @@
 #  video      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  secret_id  :string
 #
 
 class Application < ActiveRecord::Base
@@ -27,5 +28,22 @@ class Application < ActiveRecord::Base
   delegate :business, to: :job
 
   scope :order_by_business_name, -> { joins("INNER JOIN jobs ON jobs.id = applications.job_id INNER JOIN businesses ON businesses.id = jobs.business_id").order("businesses.name ASC") }
+
+  after_create :generate_secret_id
+
+  def to_param
+    self.secret_id
+  end
+
+private
+
+  def generate_secret_id
+    self.secret_id ||= loop do
+      random_token = SecureRandom.hex(16)
+      break random_token unless Job.where(secret_id: random_token).exists?
+    end
+    update_column :secret_id, self.secret_id
+  end
+
 
 end

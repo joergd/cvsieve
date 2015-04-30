@@ -7,6 +7,6 @@ class Admin::ApplicationsController < ApplicationController
   end
 
   def show
-    @application = Application.find(params[:id])
+    @application = Application.find_by_secret_id!(params[:id])
   end
 end

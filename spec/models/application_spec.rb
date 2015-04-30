@@ -11,6 +11,7 @@
 #  video      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  secret_id  :string
 #
 
 require 'rails_helper'

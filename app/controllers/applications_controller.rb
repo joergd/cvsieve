@@ -7,7 +7,7 @@ class ApplicationsController < ApplicationController
   end
 
   def show
-    @application = current_business.applications.find(params[:id])
+    @application = current_business.applications.find_by_secret_id!(params[:id])
   end
 
   def new

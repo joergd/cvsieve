@@ -5,8 +5,8 @@ class ApplicantMailer < ApplicationMailer
   #
   #   en.applicant_mailer.received.subject
   #
-  def received(application_id)
-    @application = Application.find(application_id)
+  def received(application_secret_id)
+    @application = Application.find_by_secret_id!(application_secret_id)
     mail to: @application.business.email, subject: "[Applicant Labs] You have received an application from #{@application.name}"
   end
 end
