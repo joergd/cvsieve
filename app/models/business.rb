@@ -18,7 +18,7 @@
 #  name                   :string
 #  contact                :string
 #  tel                    :string
-#  secret_id              :string
+#  status                 :string           default("active")
 #
 
 class Business < ActiveRecord::Base
